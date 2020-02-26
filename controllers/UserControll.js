@@ -1,9 +1,9 @@
 const Pool = require('pg').Pool
 const pool = new Pool({
-    user: 'postgres',
-    host: 'localhost',
-    database: 'api',
-    password: 'vertrigo',
+    user: 'ezattaequipamentos',
+    host: 'pgsql.ezattaequipamentos.com.br',
+    database: 'ezattaequipamentos',
+    password: 'Uberaba123',
     port: 5432,
 })
 const bcrypt = require('bcryptjs');

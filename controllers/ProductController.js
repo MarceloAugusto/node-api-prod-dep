@@ -1,11 +1,15 @@
 const Pool = require('pg').Pool
 const pool = new Pool({
-    user: 'postgres',
-    host: 'localhost',
-    database: 'api',
-    password: 'vertrigo',
+    user: 'ezattaequipamentos',
+    host: 'pgsql.ezattaequipamentos.com.br',
+    database: 'ezattaequipamentos',
+    password: 'Uberaba123',
     port: 5432,
 })
+const multer = require('multer');
+const upload = multer({
+  dest: 'uploads/' // this saves your file into a directory called "uploads"
+}); 
 
 const getProducts = (request, response) => {
     pool.query('SELECT * FROM products ORDER BY id ASC', (error, results) => {
@@ -75,22 +79,17 @@ const deleteProduct = (request, response) => {
     })
 }
 
-const uploadProduct = (request, response) => {
-    const name = request.body.name
-    const departments = request.body.departments
-    const stock = request.body.stock
-    const price = request.body.price
-    const photo = "request.body.photo"
-
-    pool.query('INSERT INTO products (name, departments, stock, price, photo) VALUES ($1, $2, $3, $4, $5) RETURNING *', 
-    [name, departments, stock, price, photo], 
-    (error, results) => {
-        if (error) {
-            throw error
-        }
-        response.status(201).json(results.rows[0]);
-    })
-}
+// const uploadProduct = (request, response) => {
+//     const file = req.files.photo;
+//     file.mv('./uploads/' + file.name, function(err, result) {
+//      if(err) 
+//       throw err;
+//      res.send({
+//       success: true,
+//       message: "File uploaded!"
+//      });
+//     })
+// }
 
 module.exports = {
     getProducts,
@@ -98,5 +97,5 @@ module.exports = {
     createProduct,
     updateProduct,
     deleteProduct,
-    uploadProduct
+    // uploadProduct
 }

@@ -28,6 +28,6 @@ router.get('/products/:id', productController.getProductById)
 router.post('/products', productController.createProduct)
 router.put('/products/:id', productController.updateProduct)
 router.delete('/products/:id', productController.deleteProduct)
-router.post('/products/upload',  productController.uploadProduct)//upload.single('file-to-upload'),
+// router.post('/products/upload',  productController.uploadProduct)//upload.single('file-to-upload'),
 
 module.exports = router;
